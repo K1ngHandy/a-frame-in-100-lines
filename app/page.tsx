@@ -19,10 +19,10 @@ const frameMetadata = getFrameMetadata({
 
 export const metadata: Metadata = {
   metadataBase: new URL(NEXT_PUBLIC_URL),
-  title: 'zizzamia.xyz',
+  title: 'lioncoin.xyz',
   description: 'LFG',
   openGraph: {
-    title: 'zizzamia.xyz',
+    title: 'lioncoin.xyz',
     description: 'LFG',
     images: [`${NEXT_PUBLIC_URL}/LionCoin.png`],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>ETH / USD Frame</h1>
+      <h1><a href='https://etherscan.io'>ETH / USD Frame</a></h1>
     </>
   );
 }
