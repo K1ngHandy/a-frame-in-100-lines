@@ -4,27 +4,15 @@ import { NEXT_PUBLIC_URL } from './config';
 
 const frameMetadata = getFrameMetadata({
   buttons: [
-    {
-      label: 'Story time!',
+    image: {
+      src: `${NEXT_PUBLIC_URL}/park-3.png`,
+      aspectRatio: '1:1',
     },
-    {
-      action: 'link',
-      label: 'Link to Google',
-      target: 'https://www.google.com',
+    input: {
+      text: 'Tell me a boat story',
     },
-    {
-      label: 'Redirect to pictures',
-      action: 'post_redirect',
-    },
-  ],
-  image: {
-    src: `${NEXT_PUBLIC_URL}/park-3.png`,
-    aspectRatio: '1:1',
-  },
-  input: {
-    text: 'Tell me a boat story',
-  },
-  postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
+
+    postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
 
 export const metadata: Metadata = {
