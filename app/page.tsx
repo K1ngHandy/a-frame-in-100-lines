@@ -5,8 +5,8 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
       {label: "Get ETH price"},
-      {label: "USD / ETH price"},
-      {label: "ETH / USD"},
+      {label: "USD / ETH price", action: 'post'},
+      {label: "ETH / USD", action: 'post'},
     ],
     
     image: {

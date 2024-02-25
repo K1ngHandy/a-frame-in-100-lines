@@ -2,9 +2,13 @@ import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/o
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 
+enum Currency {
+  USD,
+  ETH,
+}
+
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   let accountAddress: string | undefined = '';
-  let text: string | undefined = '';
 
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
@@ -13,26 +17,22 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     accountAddress = message.interactor.verified_accounts[0];
   }
 
-  if (message?.input) {
-    text = message.input;
+  let curr = Currency.USD;
+  if (message?.button === 3) {
+    curr = Currency.BTC;
   }
 
-  if (message?.button === 3) {
-    return NextResponse.redirect(
-      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
-      { status: 302 },
-    );
-  }
+  // TODO function for getting the price...
 
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
-        {
-          label: `Story: ${text} 🌲🌲`,
-        },
+        { label: 'Get ETH price' },
+        { label: 'USD / ETH price', action: 'post' },
+        { label: 'ETH / USD', action: 'post' },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: `${NEXT_PUBLIC_URL}/LionCoin.png`,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
     }),
