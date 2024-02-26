@@ -1,6 +1,7 @@
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
+import { createTextAndImageOverlay } from '../../../utils/createTextAndImageOverlay';
 
 enum Currency {
   USD,
@@ -22,16 +23,20 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     curr = Currency.BTC;
   }
 
-  // TODO function for getting the price...
+  const { textCurrency, newImageBuffer } = await createTextAndImageOverlay(curr);
+
+  const base64Image = newImageBuffer.toString('base64');
+  const dataUrl = `data:image/png;base64,${base64Image}`;
+
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
-        { label: 'Get ETH price' },
+        { label: textCurrency },
         { label: 'USD / ETH price', action: 'post' },
         { label: 'ETH / USD', action: 'post' },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/LionCoin.png`,
+        src: dataUrl,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
     }),

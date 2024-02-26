@@ -2,6 +2,7 @@ import { createCanvas, registerFont } from 'canvas';
 import { register } from 'module';
 import path from 'path';
 import fs from 'fs';
+import sharp from 'sharp';
 
 enum Currency {
   USD,
