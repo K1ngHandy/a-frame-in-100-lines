@@ -4,7 +4,7 @@ import { NEXT_PUBLIC_URL } from '../../config';
 
 enum Currency {
   USD,
-  ETH,
+  BTC,
 }
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
@@ -23,7 +23,6 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   }
 
   // TODO function for getting the price...
-
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [
