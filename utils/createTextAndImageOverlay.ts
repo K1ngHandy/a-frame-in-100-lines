@@ -29,7 +29,9 @@ export const createTextAndImageOverlay = async (currency: Currency) => {
 
     const ctx = canvas.getContext('2d');
 
-    registerFont(path.resolve('./public/fonts/Montserrat-BlackItalic.ttf'), { family: 'Montserrat-BlackItalic' });
+    registerFont(path.resolve('./public/fonts/Montserrat-BlackItalic.ttf'), {
+      family: 'Montserrat-BlackItalic',
+    });
 
     ctx.fillStyle = '#FDFD96'; // yellow for text
 
@@ -49,7 +51,7 @@ export const createTextAndImageOverlay = async (currency: Currency) => {
 
     return { textCurrency, newImageBuffer };
   } catch (error) {
-    const ethImagePath = path.resolve(./public/LionCoin.png);
+    const ethImagePath = path.resolve('./public/LionCoin.png');
     return { textCurrency: 'Error', newImageBuffer: ethImagePath };
 
     console.error('Failed to fetch price', error);
